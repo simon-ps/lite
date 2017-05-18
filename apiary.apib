@@ -1,0 +1,147 @@
+FORMAT: 1A
+HOST: http://lite.powershop.co.nz   
+
+# Powershop Lite API
+
+Powershop Lite is a hackday experiment to lose weight.
+
+## Users collection [/users]
+
+### List All Users [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": "1",
+                "name": "bob",
+                "email": "bob@example.com"
+            },
+            {
+                "id": "3",
+                "name": "sally",
+                "email": "sally@example.com"
+            }
+        ]
+
+## User [/users/{id}]
+
++ Parameters
+    + id: 1 (string) - ID of the User
+
+### Get a User [GET]
+
+Get a particular User by id.
+
++ Request (application/json)
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /users/1
+
+    + Body
+
+            {
+                "id": "1",
+                "name": "bob",
+                "email": "bob@example.com"
+            }
+
+
+## Products collection [/products]
+
+### List All Products [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": "1",
+                "name": "awesome product 1",
+                "price": "$30"
+            },
+            {
+                "id": "2",
+                "name": "awesome product 2",
+                "price": "$45"
+            }
+        ]
+        
+### Create a New Product [POST]
+You may create your own Product using this action.
+This action takes a JSON payload as part of the request.
+Response then return specific header and body.
+
++ Request (application/json)
+
+        {
+            "name": "New Awesome Product",
+            "price": "$150"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /products/3
+
+    + Body
+
+            {
+                "id": "3",
+                "name": "New Awesome Product",
+                "price": "$150"
+            }
+
+## Product [/products/{id}]
+
++ Parameters
+    + id: 1 (string) - ID of the Product
+
+### Get a Product [GET]
+
+Get a particular Product by id.
+
++ Request (application/json)
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /products/1
+
+    + Body
+
+            {
+                "id": "1",
+                "name": "awesome product 1",
+                "price": "$30"
+            }
+
+
+### Update a Product [PUT]
+
++ Request (application/json)
+
+        { 
+            "name": "not so awesome product"
+            "price": "$1"
+        }
+
++ Response 204 (application/json)
+
+    + Headers
+
+            Location: /products/1
+
+### Delete a Product [DELETE]
+
++ Request (application/json)
+
+        {
+            "id": "1"
+        }
+        
++ Response 200
